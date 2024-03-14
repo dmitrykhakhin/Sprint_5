@@ -1,0 +1,51 @@
+".//div[contains(@class, 'AppHeader_header__logo')]"  # Логотип в хэдере страницы сайта
+
+".//section[contains(@class, 'BurgerConstructor_basket')]//button[text()='Войти в аккаунт']"  # Кнопка "Войти в аккаунт"
+
+".//button[text()='Войти']/parent::form[contains(@class, 'Auth_form')]"  # Форма аутентификации для входа в личный кабинет
+
+".//a[@href='/register' and text()='Зарегистрироваться']"  # Ссылка для входа на страницу регистрации
+
+".//button[text()='Зарегистрироваться']/parent::form[contains(@class, 'Auth_form')]"  # Форма регистрации
+
+".//label[(text()='Имя')]/parent::div/input"  # Поле ввода имени
+
+".//label[(text()='Email')]/parent::div/input"  # Поле ввода email
+
+".//input[@name='Пароль']"  # Поле ввода пароля
+
+".//form[contains(@class, 'Auth_form')]/button[text()='Зарегистрироваться']"  # Кнопка 'Зарегистрироваться' в форме регистрации
+
+".//form[contains(@class, 'Auth_form')]/button[text()='Войти']" - Кнопка 'Войти' на странице авторизации
+
+".//header//a/p[text()='Личный Кабинет']"  # Ссылка на страницу Профиля пользователя
+
+".//main/div[contains(@class, 'Account_account')]" Блок с данными пользователя в Профиле пользователя
+
+".//ul[contains(@class, 'Profile_profileList')]//input[@name='Name']"  # Поле имя в профиле пользователя
+
+".//label[text()='Логин']/parent::div/input"  # Поле логин в профиле пользователя
+
+".input__error"  # Элемент с сообщением об ошибке (пароля)
+
+".//section[contains(@class, 'BurgerIngredients_ingredients')]"  # Секция с ингредиентами бургера на главной странице
+
+".//section[contains(@class, 'BurgerConstructor_basket')]//button  # Кнопка в секции корзины с бургером
+
+".//a[@href='/login' and text()='Войти']"  # Ссылка для перехода на страницу логина
+
+".//a[@href='/forgot-password']"  # Ссылка для перехода на страницу восстановления пароля
+
+".//form[contains(@class, 'Auth_form')]/button[text()='Восстановить']"  # Форма восстановления пароля
+
+".//p[contains(@class, 'Account_text')]"  # Абзац с текстом в профиле пользователя
+
+".//header//a/p[text()='Конструктор']"  # Ссылка на переход в Конструктов в Хэдере
+
+".//ul[contains(@class, 'Account_list')]/li/button[(text()='Выход')]" - Кнопка 'Выйти' в профиле пользователя
+
+".//div[contains(@class, 'Auth_login')]/h2" - Заголовок на странице логина
+
+".//section[contains(@class, 'BurgerIngredients_ingredients')]//span[text()='Начинки']" - Переход к разделу 'Начинки' в Конструкторе
+
+".//div[contains(@class, 'ingredients__menu')]/h2[text()='Начинки']" - Заголовок начинки в Конструкторе
