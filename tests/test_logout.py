@@ -6,9 +6,10 @@ from locators import *
 from data import *
 
 
-class TestTransitionToProfile:
-    def test_transition_to_profile(self, driver):
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, header_logo)))
+class TestLogout:
+    def test_logout_button_in_profile(self, driver):
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
+            (By.XPATH, header_logo)))
 
         login_button = driver.find_element(By.XPATH, login_button_on_main_page)
         login_button.click()
@@ -30,6 +31,11 @@ class TestTransitionToProfile:
         WebDriverWait(driver, 15).until(expected_conditions.visibility_of_element_located(
             (By.XPATH, user_data_on_profile_page)))
 
-        information_text = driver.find_element(By.XPATH, paragraph_in_profile)
+        logout_button = driver.find_element(By.XPATH,exit_button)
+        logout_button.click()
 
-        assert information_text.text == 'В этом разделе вы можете изменить свои персональные данные'
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, auth_form)))
+
+        login_header = driver.find_element(By.XPATH, login_header_element)
+
+        assert login_header.text == 'Вход'

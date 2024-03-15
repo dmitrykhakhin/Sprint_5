@@ -1,55 +1,91 @@
 from selenium.webdriver.common.by import By
-from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
-driver = webdriver.Chrome()
-driver.maximize_window()
+from locators import *
+from data import *
 
-driver.get("https://stellarburgers.nomoreparties.site/")
 
-WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
-    (By.XPATH, ".//div[contains(@class, 'AppHeader_header__logo')]")))
+class TestTransitionToConstructorSections:
+    def test_transition_to_fillings(self, driver):
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
+                    (By.XPATH, header_logo)))
 
-login_button = driver.find_element(
-    By.XPATH, ".//section[contains(@class, 'BurgerConstructor_basket')]//button[text()='Войти в аккаунт']")
-login_button.click()
+        login_button = driver.find_element(By.XPATH, login_button_on_main_page)
+        login_button.click()
 
-WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
-    (By.XPATH, ".//button[text()='Войти']/parent::form[contains(@class, 'Auth_form')]")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, auth_form)))
 
-email_input_field = driver.find_element(By.XPATH, ".//label[(text()='Email')]/parent::div/input")
-login = 'dmitry_qa06@ya.ru'
-email_input_field.send_keys(login)
-password = 'abc123'
-password_input_field = driver.find_element(By.XPATH, ".//input[@name='Пароль']")
-password_input_field.send_keys(password)
-login_button = driver.find_element(
-    By.XPATH, ".//form[contains(@class, 'Auth_form')]/button[text()='Войти']")
-login_button.click()
+        email_input_field = driver.find_element(By.XPATH, email_input)
+        email_input_field.send_keys(login)
+        password_input_field = driver.find_element(By.XPATH, password_input)
+        password_input_field.send_keys(password)
+        login_button = driver.find_element(By.XPATH, login_button_on_auth_page)
+        login_button.click()
 
-WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
-    (By.XPATH, ".//section[contains(@class, 'BurgerIngredients_ingredients')]")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
+            (By.XPATH, ingredients_section)))
 
-filling_section = driver.find_element(
-    By.XPATH, ".//section[contains(@class, 'BurgerIngredients_ingredients')]//span[text()='Начинки']")
-filling_section.click()
-filling_header = driver.find_element(By.XPATH, ".//div[contains(@class, 'ingredients__menu')]/h2[text()='Начинки']")
+        filling_section = driver.find_element(
+            By.XPATH,
+            fillings_section_element)
+        filling_section.click()
 
-assert filling_header.text == 'Начинки'
+        assert 'current' in filling_section.get_attribute('class')
 
-sauces_section = driver.find_element(
-    By.XPATH, ".//section[contains(@class, 'BurgerIngredients_ingredients')]//span[text()='Соусы']")
-sauces_section.click()
-sauces_header = driver.find_element(By.XPATH, ".//div[contains(@class, 'ingredients__menu')]/h2[text()='Соусы']")
+    def test_transition_to_sauces(self, driver):
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
+            (By.XPATH, header_logo)))
 
-assert sauces_header.text == 'Соусы'
+        login_button = driver.find_element(By.XPATH, login_button_on_main_page)
+        login_button.click()
 
-loaves_section = driver.find_element(
-    By.XPATH, ".//section[contains(@class, 'BurgerIngredients_ingredients')]//span[text()='Булки']")
-loaves_section.click()
-loaves_header = driver.find_element(By.XPATH, ".//div[contains(@class, 'ingredients__menu')]/h2[text()='Булки']")
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, auth_form)))
 
-assert loaves_header.text == 'Булки'
+        email_input_field = driver.find_element(By.XPATH, email_input)
+        email_input_field.send_keys(login)
+        password_input_field = driver.find_element(By.XPATH, password_input)
+        password_input_field.send_keys(password)
+        login_button = driver.find_element(By.XPATH, login_button_on_auth_page)
+        login_button.click()
 
-driver.quit()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
+            (By.XPATH, ingredients_section)))
+
+        sauces_section = driver.find_element(
+            By.XPATH,
+            sauces_section_element)
+        sauces_section.click()
+
+        assert 'current' in sauces_section.get_attribute('class')
+
+    def test_transition_to_loaves(self, driver):
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
+            (By.XPATH, header_logo)))
+
+        login_button = driver.find_element(By.XPATH, login_button_on_main_page)
+        login_button.click()
+
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, auth_form)))
+
+        email_input_field = driver.find_element(By.XPATH, email_input)
+        email_input_field.send_keys(login)
+        password_input_field = driver.find_element(By.XPATH, password_input)
+        password_input_field.send_keys(password)
+        login_button = driver.find_element(By.XPATH, login_button_on_auth_page)
+        login_button.click()
+
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(
+            (By.XPATH, ingredients_section)))
+
+        filling_section = driver.find_element(
+            By.XPATH,
+            fillings_section_element)
+        filling_section.click()
+
+        loaves_section = driver.find_element(
+            By.XPATH,
+            loaves_section_element)
+        loaves_section.click()
+
+        assert 'current' in loaves_section.get_attribute('class')
